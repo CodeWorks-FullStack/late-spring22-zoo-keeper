@@ -1,7 +1,7 @@
 console.log('js loaded');
 
 let money = 0;
-let lasClicked = '';
+let lastClicked = '';
 let combo = 0;
 
 const animals = {
@@ -59,6 +59,7 @@ function drawMoney(){
 }
 
 function drawAnimals(){
+// NOTE pseudo code
 // create empty template
 // add animals to tmeplate - loop
 // inject template into html
@@ -89,20 +90,21 @@ function drawAnimals(){
 }
 
 function updateAnimal(name){
+// NOTE grab all the things i will use/re-use in this function
 let animal = animals[name]
 let animalPen = document.getElementById(name)
 let animoji = animalPen.querySelector('.animal')
 // console.log(animalPen);
 // change animal status based on huger, the descending checks order matters.
-if(animal.hunger > 70){
-  animal.status = 'happy'
-} else if( animal.hunger > 40){
-  animal.status = 'normal'
-} else if (animal.hunger > 0){
-  animal.status = 'hungry'
-} else  {
-  animal.status = 'dead'
-}
+  if(animal.hunger > 70){
+    animal.status = 'happy'
+  } else if( animal.hunger > 40){
+    animal.status = 'normal'
+  } else if (animal.hunger > 0){
+    animal.status = 'hungry'
+  } else  {
+    animal.status = 'dead'
+  }
 // console.log('status', animal);
 // NOTE switch takes in a specific value and does code based on that action
 switch(animal.status){
@@ -124,7 +126,7 @@ switch(animal.status){
     animoji.innerText = '👻'
   break;
 }
-
+// NOTE querySelector selects an element like a CSS selector
 let bar = animalPen.querySelector('.progress-bar')
 // console.log(bar);
 // ignore when reaching into element attributes
@@ -151,11 +153,11 @@ function feed(name){
   let animal = animals[name]
   // NOTE only do function if animal is not dead
   if(animal.status != 'dead'){
-    if(lasClicked == name){
+    if(lastClicked == name){
       animal.hunger += 2 + combo
       combo++
     } else {
-      lasClicked = name
+      lastClicked = name
       combo = 0
     }
     //CLAMP don't over feed the animal
