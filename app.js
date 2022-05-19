@@ -188,6 +188,7 @@ function getMoney(){
     }
   }
   console.log(moneyNow, money);
+  // checks for if money increased, if it didn't don't re-draw or play the audio
   if(moneyNow != money){
     drawMoney()
   }
